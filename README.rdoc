@@ -1,8 +1,65 @@
 = has_distance
 
-A Ruby gem to add has_distance to your ActiveRecord Model.
-has_distance is used for latitude/longitude distance lookup.
-It also works with SQLite
+A Ruby gem to add distance values to your ActiveRecord Model records.
+
+has_distance is used to return nearby records given the records latitude/longitude as it's origin.
+
+A big plus as it also works with SQLite.
+
+== Configure
+
+In your Gemfile add it:
+
+    gem 'has_distance'
+
+Your ActiveRecord Model should have has_distance, for example:
+
+    class Store < ActiveRecord::Base
+      has_distance :distance
+    end
+
+has_distance supports the following fields for configuration:
+
+    * column_name  # => Default 'distance'
+    * lat_name     # => Default 'latitude'
+    * lng_name     # => Default 'longitude'
+    * units        # => Default :miles, possible values are: :miles, :kms, :nms
+    * distance     # => Default 20
+    * limit        # => Default 12
+
+has_distance can be configured with a block, for example:
+
+    class Store < ActiveRecord::Base
+      has_distance :distance do |config|
+        config.lat_name = 'lat'
+        config.lng_name = 'lng'
+        config.units    = :kms
+        config.distance = 3
+        config.limit    = 6
+      end
+    end
+
+
+== Actual Usage
+
+To use has_distance your database table should have two fields, one for latitude and the second for longitude.
+
+has_distance will provide an instance method called 'nearby'.
+
+Example:
+    
+    Store.first.nearby # Would return nearby stores based on the first store's origin, latitude & longitude.
+    
+    Store.first.nearby.each do |store|
+      # has_distance uses the column_name given in the configuration for distance
+      # In this case :distance was given, store.distance will return the actual distance away from the first store
+      store.distance
+    end
+    
+    Store.first.nearby(limit: 3) # => will limit nearby results to 3
+    Store.first.nearby.limit(3)  # => will also limit nearby results to 3
+    
+    Store.first.nearby(distance: 1) # => will limit nearby results to distance less than equal to 1
 
 == Contributing to has_distance
  

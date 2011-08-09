@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Fernando Barajas"]
-  s.date = %q{2011-08-08}
+  s.date = %q{2011-08-09}
   s.description = %q{Used to find nearby records via latitude/longitude}
   s.email = %q{fernyb@fernyb.net}
   s.extra_rdoc_files = [
@@ -20,12 +20,20 @@ Gem::Specification.new do |s|
     ".document",
     ".rspec",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "spec/geokit-distance_spec.rb",
-    "spec/spec_helper.rb"
+    "has_distance.gemspec",
+    "lib/has_distance.rb",
+    "lib/has_distance/distance.rb",
+    "lib/has_distance/railtie.rb",
+    "spec/has_distance_spec.rb",
+    "spec/spec_helper.rb",
+    "spec/support/store.rb",
+    "spec/support/stores.csv",
+    "spec/support/test.db"
   ]
   s.homepage = %q{http://github.com/fernyb/has_distance}
   s.licenses = ["MIT"]
@@ -43,12 +51,16 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<csv-mapper>, [">= 0"])
     else
       s.add_dependency(%q<rails>, [">= 3.0.0"])
       s.add_dependency(%q<rspec>, ["~> 2.3.0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_dependency(%q<rcov>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<csv-mapper>, [">= 0"])
     end
   else
     s.add_dependency(%q<rails>, [">= 3.0.0"])
@@ -56,6 +68,8 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
     s.add_dependency(%q<rcov>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<csv-mapper>, [">= 0"])
   end
 end
 
