@@ -5,14 +5,12 @@ require 'has_distance'
 require 'sqlite3'
 require 'csv-mapper'
 
+ActiveRecord::Base.send :include, HasDistance::Distance::Glue
+
 CURRENT_PATH = File.dirname(__FILE__)
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
 Dir["#{CURRENT_PATH}/support/**/*.rb"].each {|f| require f}
-
-class Store < ActiveRecord::Base
-  include HasDistance::Distance::Glue
-end
 
 RSpec.configure do |config|
 end
@@ -50,4 +48,3 @@ results.each do |res|
   person.longitude   = res.longitude
   person.save
 end
-sleep 5
