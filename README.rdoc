@@ -8,9 +8,17 @@ A big plus as it also works with SQLite.
 
 == Configure
 
+Install the gem:
+    
+    gem install has_distance
+    
 In your Gemfile add it:
 
     gem 'has_distance'
+
+From the command line install via bundle:
+    
+    bundle install
 
 Your ActiveRecord Model should have has_distance, for example:
 
