@@ -2,7 +2,7 @@
 
 A Ruby gem to add distance values to your ActiveRecord Model records.
 
-has_distance is used to return nearby records given the records latitude/longitude as it's origin.
+has_distance is used to return nearby records given the records latitude/longitude as its origin.
 
 A big plus as it also works with SQLite.
 
