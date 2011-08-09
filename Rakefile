@@ -14,11 +14,11 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "geokit-distance"
-  gem.homepage = "http://github.com/fernyb/geokit-distance"
+  gem.name = "has_distance"
+  gem.homepage = "http://github.com/fernyb/has_distance"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Adds has_distance to ActiveRecord}
+  gem.description = %Q{Used to find nearby records via latitude/longitude}
   gem.email = "fernyb@fernyb.net"
   gem.authors = ["Fernando Barajas"]
   # dependencies defined in Gemfile
@@ -38,12 +38,12 @@ end
 
 task :default => :spec
 
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
+require 'rdoc/task'
+RDoc::Task.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "geokit-distance #{version}"
+  rdoc.title = "has_distance #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
