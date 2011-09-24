@@ -28,6 +28,14 @@ module HasDistance
             block.call(self.distance_config)
           end
         end
+
+        def nearby(opts={})
+          _config = self.distance_config
+          _this = new
+          _this.send("#{_config.lat_name}=".to_sym, opts.delete(:lat))
+          _this.send("#{_config.lng_name}=".to_sym, opts.delete(:lng))
+          _this.nearby(opts)
+        end
       end # ClassMethods
 
       module InstanceMethods

@@ -180,4 +180,16 @@ describe "Store" do
     end
   end
 
+  describe :nearby do
+    it "returns nearby results" do
+      store = Store.first
+      results = Store.nearby( :lat => store.latitude,
+                              :lng => store.longitude)
+      results.to_sql.should == 'SELECT  *, 
+            (ACOS(least(1,COS(0.5953003919287299)*COS(-2.0620890579387803)*COS(RADIANS(latitude))*COS(RADIANS(longitude))+
+            COS(0.5953003919287299)*SIN(-2.0620890579387803)*COS(RADIANS(latitude))*SIN(RADIANS(longitude))+
+            SIN(0.5953003919287299)*SIN(RADIANS(latitude))))*3963.19)
+            AS distance FROM "stores" GROUP BY id HAVING distance <= 20 LIMIT 12'
+    end
+  end
 end
