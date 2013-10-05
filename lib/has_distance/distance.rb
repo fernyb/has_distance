@@ -38,7 +38,6 @@ module HasDistance
         end
       end # ClassMethods
 
-      module InstanceMethods
         KMS_PER_MILE = 1.609
         NMS_PER_MILE = 0.868976242
         EARTH_RADIUS_IN_MILES = 3963.19
@@ -127,7 +126,6 @@ module HasDistance
         def _deg2rad(degrees)
          degrees.to_f / 180.0 * Math::PI
         end
-      end # InstanceMethods
 
     end # Glue
   end # Distance
